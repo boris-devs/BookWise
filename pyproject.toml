@@ -1,0 +1,15 @@
+[project]
+name = "bookwise"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.8.0",
+    "streamlit>=1.53.0",
+    "tensorflow[and-cuda]==2.20.0",
+    "tf-keras>=2.20.1",
+    "torch>=2.9.1",
+    "transformers==4.49.0",
+]
