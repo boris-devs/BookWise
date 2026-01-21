@@ -1,6 +1,6 @@
 import pickle
 import tensorflow as tf
-from pandas import DataFrame
+from pandas import Series
 from transformers import (AutoTokenizer, TFAutoModelForSequenceClassification, PreTrainedTokenizerBase,
                           TFPreTrainedModel)
 from sklearn.preprocessing import MultiLabelBinarizer
@@ -17,7 +17,7 @@ class GenreClassifier:
         )
         self.mlb = None
 
-    def train(self, descriptions: DataFrame, common_genres: list, all_genres: DataFrame):
+    def train(self, descriptions: Series, common_genres: list, all_genres: Series):
         inputs = self.tokenizer(descriptions.tolist(),
                                 padding="max_length",
                                 truncation=True,

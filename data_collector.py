@@ -4,7 +4,7 @@ import ast
 import pandas as pd
 from collections import Counter
 
-from pandas import DataFrame
+from pandas import DataFrame, Series
 
 
 class BookDataCollector:
@@ -22,14 +22,14 @@ class BookDataCollector:
         genre_counts = Counter(all_genres).most_common(100)
         return [genre for genre, count in genre_counts]
 
-    def all_genres(self) -> DataFrame:
+    def all_genres(self) -> Series:
         genres = self.df['genres'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
         return genres
 
-    def all_descriptions(self) -> DataFrame:
+    def all_descriptions(self) -> Series:
         return self.df['description']
 
-    def combined_text(self) -> DataFrame:
+    def combined_text(self) -> Series:
         author = self.df['author'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x).fillna('')
         combined_text = (self.df['id'].astype(str)
                          + self.df['title'].fillna('')

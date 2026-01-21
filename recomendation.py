@@ -1,5 +1,5 @@
 import numpy as np
-from pandas import DataFrame
+from pandas import DataFrame, Series
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import PreTrainedTokenizerBase, TFPreTrainedModel
@@ -11,7 +11,7 @@ class HybridRecommender:
         self.collab_model = None
         self.book_ids = df.index.tolist()
 
-    def build_content_based(self, combined_text: DataFrame):
+    def build_content_based(self, combined_text: Series):
         """Контентна фільтрація на основі TF-IDF"""
         vectorizer = TfidfVectorizer(stop_words='english', max_features=5000, min_df=3)
         tfidf_matrix = vectorizer.fit_transform(combined_text)

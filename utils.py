@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from pandas import DataFrame
+from pandas import Series
 from transformers import PreTrainedTokenizerBase, TFPreTrainedModel
 
 from settings import MODEL_PATH
@@ -28,7 +28,7 @@ def get_genres_logits(path: str = MODEL_PATH / "book_logits_base.npy") -> np.nda
     return np.load(path)
 
 
-def save_semantic_embeddings(df: DataFrame, tokenizer: PreTrainedTokenizerBase, model: TFPreTrainedModel):
+def save_semantic_embeddings(df: Series, tokenizer: PreTrainedTokenizerBase, model: TFPreTrainedModel):
     descriptions = df.fillna("").tolist()
     batch_size = 16
     all_embeddings = []
